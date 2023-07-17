@@ -26,6 +26,11 @@ crashes_by_day_time = data_complete_years.groupby(['Day Of Week', 'Time Category
 
 # Create an ordered categorical variable to ensure the days are displayed in the correct order on the plot
 day_order = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
+crashes_by_day_time['Day Of Week'] = pd.Categorical(crashes_by_day_time['Day Of Week'], categories=day_order,
+                                                    ordered=True)
+
+# Sort the DataFrame by the day order
+crashes_by_day_time.sort_values('Day Of Week', inplace=True)
 
 # Define the order for the time categories
 time_order = ['00:00-02:59', '03:00-05:59', '06:00-08:59', '09:00-11:59', '12:00-14:59', '15:00-17:59', '18:00-20:59',
